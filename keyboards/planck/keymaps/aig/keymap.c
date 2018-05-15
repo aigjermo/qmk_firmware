@@ -25,7 +25,7 @@ enum planck_keycodes {
 /* Shifted keys */
 
 /* Modifier keys */
-#define RSFTENT MT(MOD_RSFT, KC_ENT)
+#define RSFTRET MT(MOD_RSFT, KC_ENT)
 #define OS_LSFT OSM(MOD_LSFT)
 #define OS_LCTL OSM(MOD_LCTL)
 #define OS_LALT OSM(MOD_LALT)
@@ -33,9 +33,9 @@ enum planck_keycodes {
 
 /* Layer keys */
 #define MOVEESC LT(_MOVEMENT, KC_ESC)
-#define L_SYMB  OSL(_SYMBOLS)
-#define L_ASYMB MO(_ALTSYMB)
-#define L_MOVE  OSL(_MOVEMENT)
+#define L_SYMB  TT(_SYMBOLS)
+#define L_ASYMB TT(_ALTSYMB)
+#define L_MOVE  TT(_MOVEMENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -43,25 +43,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ** ,-----------------------------------------------------------------------------------------------.
  ** |  Tab  |   Q   |   W   |   E   |   R   |   T   |   Y   |   U   |   I   |   O   |   P   |   Å   |
  ** |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- ** |MoveEsc|   A   |   S   |   D   |   F   |   G   |   H   |   J   |   K   |   L   |   Ø   |   Æ   |
+ ** |Mov/Esc|   A   |   S   |   D   |   F   |   G   |   H   |   J   |   K   |   L   |   Ø   |   Æ   |
  ** |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- ** | Shift |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   |   -   |RShEntr|
+ ** | Shift |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   |   -   |RSh/ret|
  ** |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- ** | Ctrl  |  GUI  | Leader|  Alt  |NumbSmb|  <-   |   ->  |Movemnt|  RALT | Leader|  Del  |  Ins  |
+ ** | Ctrl  |  GUI  |AltSymb|  Alt  |NumSymb|  <-   |   ->  |Movemnt|  RALT | Leader|  Del  |  Ins  |
  ** '-----------------------------------------------------------------------------------------------'
  **/
 [_QWERTY] = {
   { KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , NO_AA   },
   { MOVEESC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , NO_OSLH, NO_AE   },
-  { KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, RSFTENT },
-  { OS_LCTL, KC_LGUI, KC_LEAD, OS_LALT, L_SYMB , KC_BSPC, KC_SPC , L_MOVE , OS_RALT, KC_LEAD, KC_DEL , KC_INS  }
+  { KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, RSFTRET },
+  { OS_LCTL, KC_LGUI, L_ASYMB, OS_LALT, L_SYMB , KC_BSPC, KC_SPC , L_MOVE , OS_RALT, KC_LEAD, KC_DEL , KC_INS  }
 },
 
 /** Numbers
  ** ,-----------------------------------------------------------------------------------------------.
  ** |   |   |   !   |   ?   |   (   |   )   |   '   |   #   |   7   |   8   |   9   |   /   |   *   |
  ** |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- ** |AltSymb|   @   |   =   |   {   |   }   |   "   |   $   |   4   |   5   |   6   |   +   |   -   |
+ ** | Escape|   @   |   =   |   {   |   }   |   "   |   $   |   4   |   5   |   6   |   +   |   -   |
  ** |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
  ** | Shift |   ^   |   ~   |   [   |   ]   |   `   |   &   |   1   |   2   |   3   |   %   |RShEntr|
  ** |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  **/
 [_SYMBOLS] = {
   { NO_PIPE, KC_EXLM, NO_QUES, NO_LPRN, NO_RPRN, NO_QUO1, KC_HASH, KC_7   , KC_8   , KC_9   , NO_SLSH, NO_ASTR },
-  { L_ASYMB, NO_AT  , NO_EQL , NO_LCBR, NO_RCBR, NO_QUO2, NO_DLR , KC_4   , KC_5   , KC_6   , KC_PMNS, KC_PPLS },
+  { KC_ESC , NO_AT  , NO_EQL , NO_LCBR, NO_RCBR, NO_QUO2, NO_DLR , KC_4   , KC_5   , KC_6   , KC_PMNS, KC_PPLS },
   { _______, NO_CIRC, NO_TILD, NO_LBRC, NO_RBRC, NO_GRV , NO_AMPR, KC_1   , KC_2   , KC_3   , KC_PERC, _______ },
   { _______, _______, XXXXXXX, _______, L_SYMB , _______, _______, KC_0   , KC_COMM, KC_DOT , _______, _______ }
 },
@@ -87,10 +87,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ** '-----------------------------------------------------------------------------------------------'
  **/
 [_ALTSYMB] = {
-  { NO_BSLS, _______, _______, _______, _______, _______, _______, KC_F7  , KC_F8  , KC_F9  , NO_BSLS, _______ },
-  { L_ASYMB, _______, _______, NO_LESS, NO_GRTR, _______, _______, KC_F4  , KC_F5  , KC_F6  , _______, _______ },
-  { _______, _______, _______, _______, _______, _______, _______, KC_F1  , KC_F2  , KC_F3  , _______, _______ },
-  { _______, _______, _______, _______, _______, _______, _______, KC_F10 , KC_F11 , KC_F12 , _______, _______ }
+  { NO_BSLS, KC_EXLM, NO_QUES, NO_LPRN, NO_RPRN, NO_QUO1, KC_HASH, KC_F7  , KC_F8  , KC_F9  , NO_BSLS, NO_ASTR },
+  { KC_ESC , NO_AT  , NO_EQL , NO_LESS, NO_GRTR, NO_QUO2, NO_DLR , KC_F4  , KC_F5  , KC_F6  , KC_PMNS, KC_PPLS },
+  { _______, NO_CIRC, NO_TILD, NO_LBRC, NO_RBRC, NO_ACUT, NO_AMPR, KC_F1  , KC_F2  , KC_F3  , KC_PERC, _______ },
+  { _______, _______, L_ASYMB, _______, XXXXXXX, _______, _______, KC_F10 , KC_F11 , KC_F12 , _______, _______ }
 },
 
 /** Movement
