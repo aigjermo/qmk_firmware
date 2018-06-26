@@ -117,8 +117,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 LEADER_EXTERNS();
 
 #define SW_DESK(DN) \
-    register_code(KC_RCTRL);\
-    unregister_code(KC_RCTRL);\
     register_code(KC_LCTRL);\
     register_code(DN);\
     unregister_code(DN);\
@@ -151,6 +149,12 @@ void matrix_scan_user(void) {
     }
     SEQ_ONE_KEY(KC_R) {
       SW_DESK(KC_F4)
+    }
+
+    // Virtualbox
+    SEQ_TWO_KEYS(KC_V, KC_H) {
+      register_code(KC_RCTRL);
+      unregister_code(KC_RCTRL);
     }
   }
 }
